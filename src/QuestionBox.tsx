@@ -1,18 +1,18 @@
-import { getRandomLetter } from "./utils";
+import { getRandomQuestion } from './utils';
 import { useState } from 'react';
 
-const LetterBox = () => {
-    const [letter, setLetter] = useState('?')
+const QuestionBox = () => {
+    const [question, setQuestion] = useState('...')
 
     const handleClick = () => {
-        setLetter(getRandomLetter())
+        setQuestion(getRandomQuestion())
     }
 
     return (
         <div className='card'>
-            <p className='title'>Буква</p>
-            <p className='letter'>
-                {letter}
+            <p className='title'>Вопрос</p>
+            <p className='question'>
+                {question}
             </p>
             <div className="gradiend-bg">
                 <button className='btn' onClick={handleClick}>Создать букву</button>
@@ -21,4 +21,4 @@ const LetterBox = () => {
     )
 }
 
-export default LetterBox;
+export default QuestionBox;
