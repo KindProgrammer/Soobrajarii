@@ -1,10 +1,11 @@
 import { questionsList } from "./questionsList";
 
-export const getRandomLetter = () => {
+export const getRandomLetter = (): string => {
     const alphabet = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ';
-    return alphabet[Math.floor(Math.random() * alphabet.length)];
+
+    return  alphabet[Math.floor(Math.random() * alphabet.length)];
 }
 
-export const getRandomQuestion = () => {
+export const getRandomQuestion = (): string => {
     return questionsList[Math.floor(Math.random() * questionsList.length)];
 }

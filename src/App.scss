@@ -34,6 +34,18 @@
     font-size: 1.2rem;
   }
 
+  & .animated-text {
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  & .fade-out {
+    opacity: 0;
+  }
+  
+  & .fade-in {
+    opacity: 1;
+  }
+
   & .gradiend-bg {
     background-image: linear-gradient(90deg, #3bf538, #94ec36, #daec83, #ece874);
     border-radius: 10px;
