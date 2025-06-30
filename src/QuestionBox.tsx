@@ -11,7 +11,7 @@ const QuestionBox = () => {
         
         // Через 500 мс меняем текст и запускаем появление
         setTimeout(() => {
-        setQuestion(getRandomQuestion())
+        setQuestion(getRandomQuestion(question))
           setIsVisible(true);
         }, 500);
     };

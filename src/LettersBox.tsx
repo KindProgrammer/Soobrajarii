@@ -11,14 +11,10 @@ const LetterBox = () => {
         
         // Через 500 мс меняем текст и запускаем появление
         setTimeout(() => {
-        setLetter(getRandomLetter())
+        setLetter(getRandomLetter(letter))
           setIsVisible(true);
         }, 500);
     };
-
-    // const handleClick = () => {
-    //     setLetter(getRandomLetter())
-    // }
 
     return (
         <div className='card'>
