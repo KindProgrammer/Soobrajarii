@@ -6,13 +6,15 @@
 }
 
 .cardsContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
   gap: 1rem;
 }
 
 .card {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   padding: 2rem;
   border-radius: 10px;
   display: flex;
@@ -27,11 +29,11 @@
   }
 
   & .letter {
-      font-size: 5rem;
+      font-size: 7rem;
   }
 
   & .question {
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
 
   & .animated-text {
