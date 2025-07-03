@@ -1,15 +1,17 @@
 import './PlayersBox.scss';
 import React from 'react';
 import { useState } from 'react';
-// import type { PlayerCardProps } from './PlayerCard';
-import PlayerCard from './PlayerCard';
+// import PlayerCard from './PlayerCard';
+import { useModal } from './ModalProvider';
 
 const PlaersBox = () => {
-    const [playersList, setPlayrsList] = useState<Array<React.ReactNode>>([]);
+    const { openModal } = useModal();
+    const [playersList, _setPlayrsList] = useState<Array<React.ReactNode>>([]);
     const content = playersList.length === 0 ? <p className='empty-player-list'>Нет активных игроков</p> : playersList;
     
     const handleClick = () => {
-        setPlayrsList([...playersList, <PlayerCard name='ddd' />])
+        // setPlayrsList([...playersList, <PlayerCard name='ddd' />])
+        openModal();
     }
 
     return (

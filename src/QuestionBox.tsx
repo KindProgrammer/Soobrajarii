@@ -23,7 +23,7 @@ const QuestionBox = () => {
                 {question}
             </p>
             <div className="gradiend-bg">
-                <button className='btn' onClick={changeText}>Создать букву</button>
+                <button className='btn' onClick={changeText}>Создать вопрос</button>
             </div>
         </div>
     )
