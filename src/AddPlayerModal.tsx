@@ -2,12 +2,13 @@ import './AddPlayerModal.scss';
 import React from 'react';
 import Cross from './assets/cross.svg?react';
 import { useModal } from './ModalProvider';
+import { usePlayers } from './PlayerProvider';
 import { useState, useEffect } from 'react';
-
 
 const AddPlayerModal = () => {
     const { modal, closeModal } = useModal();
     const [isVisible, setIsVisible] = useState(true);
+    const { addPlayer } = usePlayers();
 
     useEffect(() => {
         if (modal.isOpen) {

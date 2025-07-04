@@ -5,18 +5,21 @@ import LetterBox from './LettersBox'
 import QuestionBox from './QuestionBox'
 import AddPlayerModal from './AddPlayerModal'
 import ModalProvider from './ModalProvider'
+import PlayersProvider from './PlayerProvider'
 
 function App() {
 
   return (
-    <ModalProvider>
-      <div className='cardsContainer'>
-        <LetterBox />
-        <QuestionBox />
-        <PlaersBox />
-        <AddPlayerModal />
-      </div>
-    </ModalProvider>
+    <PlayersProvider>
+      <ModalProvider>
+        <div className='cardsContainer'>
+          <LetterBox />
+          <QuestionBox />
+          <PlaersBox />
+          <AddPlayerModal />
+        </div>
+      </ModalProvider>
+    </PlayersProvider>
   )
 }
 
