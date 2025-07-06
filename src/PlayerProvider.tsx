@@ -33,7 +33,7 @@ const PlayersProvider: React.FC<PlayersProviderProps> = ({children}) => {
     }
 
     const removePlayer = (playerID: symbol) => {
-        const newPlayersList = players.filter((player) => player.id === playerID);
+        const newPlayersList = players.filter((player) => player.id !== playerID);
         setPlayers(newPlayersList);
     }
 

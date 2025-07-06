@@ -12,7 +12,7 @@ function App() {
   return (
     <PlayersProvider>
       <ModalProvider>
-        <div className='cardsContainer'>
+        <div className='cards-container'>
           <LetterBox />
           <QuestionBox />
           <PlaersBox />

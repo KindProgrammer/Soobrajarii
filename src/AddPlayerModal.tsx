@@ -4,6 +4,7 @@ import Cross from './assets/cross.svg?react';
 import { useModal } from './ModalProvider';
 import { usePlayers } from './PlayerProvider';
 import { useState, useEffect } from 'react';
+import { delay } from './utils';
 
 const AddPlayerModal = () => {
     const { modal, closeModal } = useModal();
@@ -22,7 +23,7 @@ const AddPlayerModal = () => {
         return null;
     }
 
-    const handleSubmit = (e: React.SyntheticEvent) => {
+    const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         const target = e.target as typeof e.target & {
             name: { value: string };
@@ -32,16 +33,14 @@ const AddPlayerModal = () => {
         
         const name = target.name.value;
         target.name.value = '';
-        console.log(name);
+
+        addPlayer(name);
+        setIsVisible(false);
+        await delay(500);
+        closeModal()
     }
 
     const handleClose = async () => {
-        async function delay(ms: number): Promise<void> {
-            return new Promise((resolve) => {
-              setTimeout(resolve, ms);
-            });
-          }
-        
         setIsVisible(false);
         await delay(500);
         closeModal()

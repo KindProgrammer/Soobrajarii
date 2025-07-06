@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { usePlayers } from "./PlayerProvider";
+import Cross from './assets/cross.svg?react';
 
 export type PlayerCardProps = {
     name: string;
@@ -19,10 +20,12 @@ const PlayerCard = ({ id, name }: PlayerCardProps) => {
     }
 
     return (
-        <div>
-            <div>{name}</div>
-            <button onClick={handleClick}>{count}</button>
-            <button onAuxClick={handleRemove}>Удалить игрока</button>
+        <div className="player">
+            <span className='cross-container'>
+                <Cross className='cross' onClick={handleRemove} />
+            </span>
+            <div className="player-name">{name}</div>
+            <button className="count" onClick={handleClick}>{count}</button>
         </div>
     );
 }
