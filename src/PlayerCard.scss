@@ -1,0 +1,57 @@
+.player {
+    min-width: 150px;
+    padding: 1rem;
+    border: 1px solid #3bf538;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+
+    &.mounted {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cross-container {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.cross {
+    width: 100%;
+    height: 100%;
+}
+
+.player-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.count {
+    height: 3rem;
+    min-width: 3rem;
+    font-size: 2rem;
+    border-radius: 50%;
+    background-color: #3bf538;
+    color: white;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.count:hover {
+    transform: scale(1.1);
+}
+
+.count:active {
+    transform: scale(1);
+}
