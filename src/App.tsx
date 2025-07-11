@@ -1,9 +1,8 @@
 import './App.scss'
 
-import PlaersBox from './PlayersBox'
+import PlayersBox from './PlayersBox'
 import LetterBox from './LettersBox'
 import QuestionBox from './QuestionBox'
-import AddPlayerModal from './AddPlayerModal'
 import ModalProvider from './ModalProvider'
 import PlayersProvider from './PlayerProvider'
 
@@ -15,8 +14,7 @@ function App() {
         <div className='cards-container'>
           <LetterBox />
           <QuestionBox />
-          <PlaersBox />
-          <AddPlayerModal />
+          <PlayersBox />
         </div>
       </ModalProvider>
     </PlayersProvider>

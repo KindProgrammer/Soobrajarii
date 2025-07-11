@@ -1,0 +1,40 @@
+.clue-text {
+    text-align: start;
+    font-size: 1.2rem;
+}
+
+.form {
+    display: flex;
+    gap: 1rem;
+}
+
+.input {
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #DCDCDC;
+    border-radius: 10px;
+    padding: 0 1rem;
+    outline: none;
+}
+
+.input:focus {
+    border: 1px solid #3bf538;
+}
+
+.btn {
+    background-color: #3bf538;
+    height: 40px;
+    border: solid 3px #3bf538;
+    border-radius: 10px;
+    color: white;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    font-weight: bold;
+    transition: background 0.6s;
+}
+
+.btn:hover {
+    color: #3bf538;
+    background: none;
+}

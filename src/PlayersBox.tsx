@@ -1,8 +1,9 @@
 import './PlayersBox.scss';
 import { useModal } from './ModalProvider';
 import { usePlayers } from './PlayerProvider';
+import AddPlayerModal from './modals/AddPlayerModal/AddPlayerModal';
 
-const PlaersBox = () => {
+const PlayersBox = () => {
     const { openModal } = useModal();
     const { players } = usePlayers()
     let content;
@@ -10,16 +11,16 @@ const PlaersBox = () => {
         content = <p className='empty-player-list'>Нет активных игроков</p>
     } else {
         content = players.map((player) => {
-            return player.card;
+            return player?.card;
         })
     }
     
     const handleClick = () => {
-        openModal();
+        openModal(<AddPlayerModal />);
     }
 
     return (
-        <div className='plaers-box'>
+        <div className='players-box'>
             <div className="title">
                 Игроки
             </div>
@@ -33,5 +34,5 @@ const PlaersBox = () => {
     )
 }
 
-export default PlaersBox;
+export default PlayersBox;
 
