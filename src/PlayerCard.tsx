@@ -6,7 +6,7 @@ import { delay } from './utils';
 
 export type PlayerCardProps = {
     name: string;
-    id: symbol
+    id: string;
   };
 
 const PlayerCard = ({ id, name }: PlayerCardProps) => {
@@ -17,7 +17,6 @@ const PlayerCard = ({ id, name }: PlayerCardProps) => {
     useEffect(() => {
         setMounted(true);
       }, []);
-
 
     const handleClick = () => {
         setCount(count + 1);
@@ -30,7 +29,7 @@ const PlayerCard = ({ id, name }: PlayerCardProps) => {
     }
 
     return (
-        <div className={`player ${mounted ? 'mounted' : ''}`}>
+        <div key={id} className={`player ${mounted ? 'mounted' : ''}`}>
             <span className='cross-container'>
                 <Cross className='cross' onClick={handleRemove} />
             </span>

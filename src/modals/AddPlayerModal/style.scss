@@ -1,6 +1,7 @@
 .clue-text {
     text-align: start;
     font-size: 1.2rem;
+    margin-bottom: 0.5rem;
 }
 
 .form {
@@ -20,6 +21,17 @@
 
 .input:focus {
     border: 1px solid #3bf538;
+}
+
+.input-error {
+    border: 1px solid red;
+}
+
+.error-message {
+    height: 1rem;
+    margin-top: 0.2rem;
+    color: red;
+    text-align: left;
 }
 
 .btn {

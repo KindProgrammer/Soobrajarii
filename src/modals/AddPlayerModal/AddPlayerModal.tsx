@@ -1,40 +1,66 @@
 import './style.scss';
 import { usePlayers } from '../../PlayerProvider';
 import { useModal } from '../../ModalProvider';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const AddPlayerModal = () => {
-const { addPlayer } = usePlayers();
+const { players, addPlayer } = usePlayers();
 const { closeModal } = useModal();
+const currentPlayers = players.map(player => player.id);
 
-    const handleSubmit = async (e: React.SyntheticEvent) => {
-        e.preventDefault();
-        const target = e.target as typeof e.target & {
-            name: { value: string };
-          };
-        
-        if (target.name.value === '') return;
-        
-        const name = target.name.value;
-        target.name.value = '';
+const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .required('Обязательное поле')
+      .min(3, 'Минимум 3 символа')
+      .max(20, 'Максимум 20 символов')
+      .test(
+        'unique-name',
+        'Игрок с таким именем уже существует',
+        (value) => {
+            const newPlayer = value.trim();
+            return !currentPlayers.includes(newPlayer);
+        }
+      )
+    });
 
-        addPlayer(name);
-        closeModal()
-    }
+    const formik = useFormik({
+        initialValues: {
+        name: ''
+        },
+        validationSchema,
+        onSubmit: (values) => {
+            addPlayer(values.name.trim());
+            closeModal();
+        }
+    });
 
     return (
         <div>
             <p className='clue-text'>Напишите имя нового игрока:</p>
-            <form className='form' onSubmit={handleSubmit}>
+            <form className='form' onSubmit={formik.handleSubmit}>
                 <input 
-                    className='input'
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={`input ${formik.touched.name && formik.errors.name ? 'input-error' : ''}`}
                     type="text"
                     name="name"
                     placeholder='Имя игрока'
                     minLength={3}
                     maxLength={20}
                 />
-                <button className='btn' type="submit">Добавить</button>
+                <button 
+                    disabled={!formik.isValid || formik.isSubmitting}
+                    className='btn'
+                    type="submit"
+                >
+                    Добавить
+                </button>
             </form>
+            {formik.touched.name && formik.errors.name && (
+                <p className="error-message">{formik.errors.name}</p>
+            ) || (<p className="error-message"></p>)}
         </div>
     );
 }
