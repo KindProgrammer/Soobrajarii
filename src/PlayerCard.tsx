@@ -18,8 +18,13 @@ const PlayerCard = ({ id, name }: PlayerCardProps) => {
         setMounted(true);
       }, []);
 
-    const handleClick = () => {
+    const handlePlus = () => {
         setCount(count + 1);
+    }
+
+    const handleMinus = () => {
+        if (count - 1 < 0) return;
+        setCount(count - 1);
     }
 
     const handleRemove = async () => {
@@ -33,8 +38,12 @@ const PlayerCard = ({ id, name }: PlayerCardProps) => {
             <span className='cross-container'>
                 <Cross className='cross' onClick={handleRemove} />
             </span>
-            <div className="player-name">{name}</div>
-            <button className="count" onClick={handleClick}>{count}</button>
+            <p className="player-name" title={name}>{name}</p>
+            <div className='count-container'>
+                <button className='count-btn' onClick={handleMinus}>{"\u2212"}</button>
+                <div className="count">{count}</div>
+                <button className='count-btn' onClick={handlePlus}>{"\uFF0B"}</button>
+            </div>
         </div>
     );
 }

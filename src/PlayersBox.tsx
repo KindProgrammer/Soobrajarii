@@ -7,6 +7,7 @@ const PlayersBox = () => {
     const { openModal } = useModal();
     const { players } = usePlayers();
     let content;
+
     if (players.length === 0) {
         content = <p className='empty-player-list'>Нет активных игроков</p>
     } else {
@@ -20,7 +21,7 @@ const PlayersBox = () => {
     }
 
     return (
-        <div className='players-box'>
+        <div className={`players-box`}>
             <div className="title">
                 Игроки
             </div>
