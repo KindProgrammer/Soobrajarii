@@ -17,14 +17,11 @@ const LetterBox = () => {
     };
 
     return (
-        <div className='card'>
+        <div className='card' onClick={changeText}>
             <p className='title'>Буква</p>
             <p className={`letter animated-text ${isVisible ? 'fade-in' : 'fade-out'}`}>
                 {letter}
             </p>
-            <div className="gradiend-bg">
-                <button className='btn' onClick={changeText}>Создать букву</button>
-            </div>
         </div>
     )
 }

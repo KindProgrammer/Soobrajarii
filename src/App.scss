@@ -1,5 +1,7 @@
+@use './styles/mixin';
+
 #root {
-  max-width: 800px;
+  width: 700px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -10,69 +12,9 @@
   grid-template-columns: repeat(2, auto);
   grid-template-rows: repeat(2, auto);
   gap: 1rem;
-  max-width: 100%;
+  width: 100%;
 }
 
 .card {
-  min-width: 300px;
-  height: 300px;
-  padding: 2rem;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-
-  & .title {
-      font-size: 1.5rem;
-      font-weight: bold;
-  }
-
-  & .letter {
-      font-size: 7rem;
-  }
-
-  & .question {
-    font-size: 2rem;
-  }
-
-  & .animated-text {
-    transition: opacity 0.5s ease-in-out;
-  }
-
-  & .fade-out {
-    opacity: 0;
-  }
-  
-  & .fade-in {
-    opacity: 1;
-  }
-
-  & .gradiend-bg {
-    background-image: linear-gradient(90deg, #3bf538, #94ec36, #daec83, #ece874);
-    border-radius: 10px;
-    position: relative;
-    width: 100%;
-    height: 50px;
-
-    & .btn {
-      position: absolute;
-      top: 3px;
-      left: 3px;
-      bottom: 3px;
-      right: 3px;
-      color: white;
-      font-weight: bold;
-      border: none;
-      border-radius: 9px;
-      background: none;
-      transition: background 0.6s;
-    }
-
-    & .btn:hover {
-      background: white;
-      color: #94ec36;
-    }
-  }
+  @include mixin.card();
 }

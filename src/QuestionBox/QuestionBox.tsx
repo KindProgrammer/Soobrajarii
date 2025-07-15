@@ -1,8 +1,9 @@
-import { getRandomQuestion } from './utils';
+import './QuestionBox.scss';
+import { getRandomQuestion } from '../utils';
 import { useState } from 'react';
 
 const QuestionBox = () => {
-    const [question, setQuestion] = useState('...')
+    const [question, setQuestion] = useState<string>('')
     const [isVisible, setIsVisible] = useState(true);
 
     const changeText = () => {
@@ -17,14 +18,11 @@ const QuestionBox = () => {
     };
 
     return (
-        <div className='card'>
+        <div className='card' onClick={changeText}>
             <p className='title'>Вопрос</p>
             <p className={`question animated-text ${isVisible ? 'fade-in' : 'fade-out'}`}>
-                {question}
+                {question === '' ? <span className='first-time'>Создать вопрос</span> : question}
             </p>
-            <div className="gradiend-bg">
-                <button className='btn' onClick={changeText}>Создать вопрос</button>
-            </div>
         </div>
     )
 }
