@@ -33,7 +33,6 @@ export default defineConfig({
       output: {
         manualChunks: { // Ручное разделение чанков
           react: ['react', 'react-dom'],
-          vendor: ['lodash', 'axios']
         }
       }
     }
