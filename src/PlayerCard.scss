@@ -1,9 +1,11 @@
+@use '../src/styles/variables' as *;
+
 .player {
     // width: 150px;
     width: 100%;
     padding: 1rem;
     box-sizing: border-box;
-    border: 1px solid #3bf538;
+    border: 1px solid $color-player-card-border-lite;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -52,7 +54,7 @@
         min-width: 3rem;
         font-size: 2rem;
         border-radius: 50%;
-        background-color: #3bf538;
+        background-color: $color-player-counter-lite;
         color: white;
         border: none;
         display: flex;
@@ -61,7 +63,7 @@
     }
 
     & .count-btn {
-        background-color: #3bf53842;
+        background-color: $color-player-card-count-btn-lite;
         border: none;
         font-size: 1rem;
         font-weight: bold;

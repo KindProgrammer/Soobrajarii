@@ -1,3 +1,5 @@
+@use '../../styles/variables' as *;
+
 .clue-text {
     text-align: start;
     font-size: 1.2rem;
@@ -13,33 +15,33 @@
     height: 40px;
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid #DCDCDC;
+    border: 1px solid $color-add-player-input-border-default-lite;
     border-radius: 10px;
     padding: 0 1rem;
     outline: none;
 }
 
 .input:focus {
-    border: 1px solid #3bf538;
+    border: 1px solid $color-add-player-input-border-focus-lite;
 }
 
 .input-error {
-    border: 1px solid red;
+    border: 1px solid $color-add-player-input-border-error-lite;
 }
 
 .error-message {
     height: 1rem;
     margin-top: 0.2rem;
-    color: red;
+    color: $color-add-player-error-text-lite;
     text-align: left;
 }
 
 .btn {
-    background-color: #3bf538;
+    background-color: $color-add-player-btn-default-lite;
     height: 40px;
-    border: solid 3px #3bf538;
+    border: solid 3px $color-add-player-btn-default-lite;
     border-radius: 10px;
-    color: white;
+    color: $color-add-player-btn-text-default-lite;
     padding: 0 1rem;
     box-sizing: border-box;
     font-weight: bold;
@@ -47,6 +49,6 @@
 }
 
 .btn:hover {
-    color: #3bf538;
+    color: $color-add-player-btn-text-hover-lite;
     background: none;
 }
