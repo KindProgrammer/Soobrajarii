@@ -1,20 +1,13 @@
 import './PlayersBox.scss';
 import { useModal } from '../ModalProvider';
-import { usePlayers } from '../PlayerProvider';
 import AddPlayerModal from '../modals/AddPlayerModal/AddPlayerModal';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../store/store';
+import PlayerCard from '../PlayerCard/PlayerCard';
 
 const PlayersBox = () => {
     const { openModal } = useModal();
-    const { players } = usePlayers();
-    let content;
-
-    if (players.length === 0) {
-        content = <p className='empty-player-list'>Нет активных игроков</p>
-    } else {
-        content = players.map((player) => {
-            return player?.card;
-        })
-    }
+    const players = useSelector((state: RootState) => state.players)
     
     const handleClick = () => {
         openModal(<AddPlayerModal />);
@@ -26,7 +19,12 @@ const PlayersBox = () => {
                 Игроки
             </div>
             <div className="players">
-                { content }
+                { 
+                    players.players?.length === 0 ? 
+                    <p className='empty-player-list'>Нет активных игроков</p> 
+                    :
+                    players.players?.map(player => <PlayerCard key={player.name} name={player.name} id={player.name} />)
+                }
             </div>
             <div className="btn-container">
                 <button className="btn" onClick={handleClick}>Добавить игрока</button>

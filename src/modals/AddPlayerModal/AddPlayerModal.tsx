@@ -1,38 +1,45 @@
 import './style.scss';
-import { usePlayers } from '../../PlayerProvider';
 import { useModal } from '../../ModalProvider';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
+import { addPlayer } from '../../store/slices/playersSlice';
+import type { RootState } from '../../store/store';
 
 const AddPlayerModal = () => {
-const { players, addPlayer } = usePlayers();
-const { closeModal } = useModal();
-const currentPlayers = players.map(player => player.id);
-
-const validationSchema = Yup.object().shape({
-    name: Yup.string()
-      .required('Обязательное поле')
-      .min(3, 'Минимум 3 символа')
-      .max(20, 'Максимум 20 символов')
-      .test(
-        'unique-name',
-        'Игрок с таким именем уже существует',
-        (value) => {
-            const newPlayer = value.trim();
-            return !currentPlayers.includes(newPlayer);
-        }
-      )
+    const { closeModal } = useModal();
+    const dispatch = useDispatch();
+    
+    // Оптимизированный селектор
+    const currentPlayers = useSelector(
+      (state: RootState) => state.players.players?.map(p => p?.name.toLowerCase()),
+      shallowEqual
+    );
+  
+    const validationSchema = Yup.object().shape({
+      name: Yup.string()
+        .required('Обязательное поле')
+        .min(3, 'Минимум 3 символа')
+        .max(20, 'Максимум 20 символов')
+        .test(
+            'unique-name',
+            'Игрок с таким именем уже существует',
+            (value) => {
+                const name = value.trim();
+                return !currentPlayers?.includes(name);
+            }
+        )
     });
-
+  
     const formik = useFormik({
-        initialValues: {
-        name: ''
-        },
-        validationSchema,
-        onSubmit: (values) => {
-            addPlayer(values.name.trim());
-            closeModal();
-        }
+      initialValues: { name: '' },
+      validationSchema,
+      onSubmit: (values) => {
+        const name = values.name.trim();
+        dispatch(addPlayer(name));
+        closeModal();
+      }
     });
 
     return (
@@ -58,9 +65,10 @@ const validationSchema = Yup.object().shape({
                     Добавить
                 </button>
             </form>
-            {formik.touched.name && formik.errors.name && (
-                <p className="error-message">{formik.errors.name}</p>
-            ) || (<p className="error-message"></p>)}
+            {formik.touched.name && formik.errors.name ? 
+            (<p className="error-message">{formik.errors.name}</p>) 
+            : 
+            null}
         </div>
     );
 }

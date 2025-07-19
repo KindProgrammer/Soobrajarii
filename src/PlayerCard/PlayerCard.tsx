@@ -1,8 +1,9 @@
 import './PlayerCard.scss'
 import { useState, useEffect } from "react";
-import { usePlayers } from "../PlayerProvider";
 import Cross from '../assets/cross.svg?react';
 import { delay } from '../utils';
+import { removePlayer } from '../store/slices/playersSlice';
+import { useDispatch } from 'react-redux';
 
 export type PlayerCardProps = {
     name: string;
@@ -12,7 +13,7 @@ export type PlayerCardProps = {
 const PlayerCard = ({ id, name }: PlayerCardProps) => {
     const [count, setCount] = useState(0)
     const [mounted, setMounted] = useState(false);
-    const { removePlayer } = usePlayers()
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setMounted(true);
@@ -30,7 +31,7 @@ const PlayerCard = ({ id, name }: PlayerCardProps) => {
     const handleRemove = async () => {
         setMounted(false)
         await delay(500)
-        removePlayer(id)
+        dispatch(removePlayer(name))
     }
 
     return (

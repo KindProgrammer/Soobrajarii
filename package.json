@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@reduxjs/toolkit": "^2.8.2",
     "formik": "^2.4.6",
     "framer-motion": "^12.23.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-redux": "^9.2.0",
     "vite-plugin-compression2": "^2.2.0",
     "yup": "^1.6.1"
   },
