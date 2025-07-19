@@ -1,16 +1,16 @@
 import './PlayersBox.scss';
-import { useModal } from '../ModalProvider';
-import AddPlayerModal from '../modals/AddPlayerModal/AddPlayerModal';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
 import PlayerCard from '../PlayerCard/PlayerCard';
+import { openModal } from '../store/slices/modalSlice';
+import { useDispatch } from 'react-redux';
 
 const PlayersBox = () => {
-    const { openModal } = useModal();
     const players = useSelector((state: RootState) => state.players)
+    const dispatch = useDispatch();
     
     const handleClick = () => {
-        openModal(<AddPlayerModal />);
+        dispatch(openModal('addPlayerModal'));
     }
 
     return (

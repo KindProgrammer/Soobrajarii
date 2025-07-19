@@ -1,14 +1,14 @@
 import './style.scss';
-import { useModal } from '../../ModalProvider';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useSelector, shallowEqual } from 'react-redux';
 import { addPlayer } from '../../store/slices/playersSlice';
 import type { RootState } from '../../store/store';
+import ModalLayout from '../ModalLayout/ModalLayout';
+import { closeModal } from '../../store/slices/modalSlice';
 
 const AddPlayerModal = () => {
-    const { closeModal } = useModal();
     const dispatch = useDispatch();
     
     // Оптимизированный селектор
@@ -38,38 +38,40 @@ const AddPlayerModal = () => {
       onSubmit: (values) => {
         const name = values.name.trim();
         dispatch(addPlayer(name));
-        closeModal();
+        dispatch(closeModal());
       }
     });
 
     return (
-        <div>
-            <p className='clue-text'>Напишите имя нового игрока:</p>
-            <form className='form' onSubmit={formik.handleSubmit}>
-                <input 
-                    value={formik.values.name}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    className={`input ${formik.touched.name && formik.errors.name ? 'input-error' : ''}`}
-                    type="text"
-                    name="name"
-                    placeholder='Имя игрока'
-                    minLength={3}
-                    maxLength={20}
-                />
-                <button 
-                    disabled={!formik.isValid || formik.isSubmitting}
-                    className='btn'
-                    type="submit"
-                >
-                    Добавить
-                </button>
-            </form>
-            {formik.touched.name && formik.errors.name ? 
-            (<p className="error-message">{formik.errors.name}</p>) 
-            : 
-            null}
-        </div>
+        <ModalLayout>
+            <div>
+                <p className='clue-text'>Напишите имя нового игрока:</p>
+                <form className='form' onSubmit={formik.handleSubmit}>
+                    <input 
+                        value={formik.values.name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        className={`input ${formik.touched.name && formik.errors.name ? 'input-error' : ''}`}
+                        type="text"
+                        name="name"
+                        placeholder='Имя игрока'
+                        minLength={3}
+                        maxLength={20}
+                    />
+                    <button 
+                        disabled={!formik.isValid || formik.isSubmitting}
+                        className='btn'
+                        type="submit"
+                    >
+                        Добавить
+                    </button>
+                </form>
+                {formik.touched.name && formik.errors.name ? 
+                (<p className="error-message">{formik.errors.name}</p>) 
+                : 
+                null}
+            </div>
+        </ModalLayout>
     );
 }
 

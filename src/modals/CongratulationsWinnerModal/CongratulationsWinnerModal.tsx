@@ -1,8 +1,12 @@
+import ModalLayout from "../ModalLayout/ModalLayout";
+
 const CongratulationsWinnerModal = () => {
     return (
-        <div>
+        <ModalLayout>
+            <div>
             
-        </div>
+            </div>
+        </ModalLayout>
     );
 }
 

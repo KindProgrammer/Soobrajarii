@@ -1,13 +1,20 @@
 import './style.scss';
 import Cross from '../../assets/cross.svg?react';
-import { useModal } from '../../ModalProvider';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSelector, useDispatch } from 'react-redux';
+import { isOpenedSelector, closeModal } from '../../store/slices/modalSlice';
+import type { ReactNode } from 'react';
 
-const Modal = () => {
-    const { isOpend, modalContent, closeModal } = useModal();
+interface ModalProps {
+    children: ReactNode
+}
+
+const ModalLayout = ({children}: ModalProps) => {
+    const isOpend = useSelector(isOpenedSelector);
+    const dispatch = useDispatch();
 
     const handleClose = async () => {
-        closeModal();
+        dispatch(closeModal());
     }
 
     return (
@@ -29,7 +36,7 @@ const Modal = () => {
                             <motion.span className='cross-container'>
                                 <Cross className='cross' onClick={handleClose} />
                             </motion.span>
-                            { modalContent }
+                            { children }
                         </motion.div>
                     </motion.div>
             )}
@@ -37,4 +44,4 @@ const Modal = () => {
     )
 }
 
-export default Modal;
+export default ModalLayout;
