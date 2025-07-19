@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
 import type { ReactNode } from 'react';
-import PlayerCard from './PlayerCard';
+import PlayerCard from './PlayerCard/PlayerCard';
 
 type Player = {
     id: string,

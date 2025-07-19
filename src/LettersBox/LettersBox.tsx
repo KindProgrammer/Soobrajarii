@@ -1,4 +1,4 @@
-import { getRandomLetter } from "./utils";
+import { getRandomLetter } from "../utils";
 import { useState } from 'react';
 
 const LetterBox = () => {

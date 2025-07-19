@@ -1,4 +1,4 @@
-@use '../src/styles/variables' as *;
+@use '../styles/variables' as *;
 
 .players-box {
     grid-column: 1 / 3;
@@ -58,5 +58,4 @@
             background: none;
         }
     }
-
 }

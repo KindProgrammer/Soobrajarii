@@ -1,8 +1,8 @@
 import './PlayerCard.scss'
 import { useState, useEffect } from "react";
-import { usePlayers } from "./PlayerProvider";
-import Cross from './assets/cross.svg?react';
-import { delay } from './utils';
+import { usePlayers } from "../PlayerProvider";
+import Cross from '../assets/cross.svg?react';
+import { delay } from '../utils';
 
 export type PlayerCardProps = {
     name: string;

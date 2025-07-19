@@ -1,10 +1,10 @@
 import './App.scss'
 
-import PlayersBox from './PlayersBox'
-import LetterBox from './LettersBox'
-import QuestionBox from './QuestionBox/QuestionBox'
-import ModalProvider from './ModalProvider'
-import PlayersProvider from './PlayerProvider'
+import PlayersBox from '../PlayersBox/PlayersBox'
+import LetterBox from '../LettersBox/LettersBox'
+import QuestionBox from '../QuestionBox/QuestionBox'
+import ModalProvider from '../ModalProvider'
+import PlayersProvider from '../PlayerProvider'
 
 function App() {
 

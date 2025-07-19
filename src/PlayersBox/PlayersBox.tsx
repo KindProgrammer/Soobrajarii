@@ -1,7 +1,7 @@
 import './PlayersBox.scss';
-import { useModal } from './ModalProvider';
-import { usePlayers } from './PlayerProvider';
-import AddPlayerModal from './modals/AddPlayerModal/AddPlayerModal';
+import { useModal } from '../ModalProvider';
+import { usePlayers } from '../PlayerProvider';
+import AddPlayerModal from '../modals/AddPlayerModal/AddPlayerModal';
 
 const PlayersBox = () => {
     const { openModal } = useModal();
