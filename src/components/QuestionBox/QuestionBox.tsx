@@ -1,28 +1,36 @@
 import './QuestionBox.scss';
-import { getRandomQuestion } from '../../utils';
-import { useState } from 'react';
+import { questionSelector, generateQuestion } from '../../store/slices/questionSlice';
+import { resetLetter } from '../../store/slices/letterSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const QuestionBox = () => {
-    const [question, setQuestion] = useState<string>('')
-    const [isVisible, setIsVisible] = useState(true);
+    const question = useSelector(questionSelector);
+    const dispatch = useDispatch();
 
     const changeText = () => {
-        // Запускаем исчезновение
-        setIsVisible(false);
-        
-        // Через 500 мс меняем текст и запускаем появление
-        setTimeout(() => {
-        setQuestion(getRandomQuestion(question))
-          setIsVisible(true);
-        }, 500);
+        dispatch(generateQuestion())
+        dispatch(resetLetter())
     };
 
     return (
         <div className='card' onClick={changeText}>
             <p className='title'>Вопрос</p>
-            <p className={`question animated-text ${isVisible ? 'fade-in' : 'fade-out'}`}>
-                {question === '' ? <span className='first-time'>Создать вопрос</span> : question}
-            </p>
+            <AnimatePresence mode='wait'>
+                <motion.p 
+                    className={`question animated-text`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ 
+                        duration: 0.3,
+                        ease: 'easeOut'
+                    }}
+                    key={question}
+                >
+                    {question}
+                </motion.p>
+            </AnimatePresence>
         </div>
     )
 }

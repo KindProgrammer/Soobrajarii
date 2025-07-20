@@ -1,27 +1,37 @@
-import { getRandomLetter } from '../../utils';
-import { useState } from 'react';
+import './LetterBox.scss';
+import { letterSelector, generateLetter } from '../../store/slices/letterSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const LetterBox = () => {
-    const [letter, setLetter] = useState('?')
-    const [isVisible, setIsVisible] = useState(true);
+    const letter = useSelector(letterSelector);
+    const dispatch = useDispatch();
 
     const changeText = () => {
-        // Запускаем исчезновение
-        setIsVisible(false);
-        
-        // Через 500 мс меняем текст и запускаем появление
-        setTimeout(() => {
-        setLetter(getRandomLetter(letter))
-          setIsVisible(true);
-        }, 500);
+            dispatch(generateLetter())
     };
 
     return (
-        <div className='card' onClick={changeText}>
+        <div 
+            className='card' 
+            onClick={changeText}
+        >
             <p className='title'>Буква</p>
-            <p className={`letter animated-text ${isVisible ? 'fade-in' : 'fade-out'}`}>
-                {letter}
-            </p>
+            <AnimatePresence mode='wait'>
+                <motion.p 
+                    className={`letter animated-text`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ 
+                        duration: 0.3,
+                        ease: 'easeOut'
+                    }}
+                    key={letter}
+                >
+                    {letter}
+                </motion.p>
+            </AnimatePresence>
         </div>
     )
 }
