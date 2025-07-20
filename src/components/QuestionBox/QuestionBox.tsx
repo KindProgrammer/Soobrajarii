@@ -1,5 +1,5 @@
 import './QuestionBox.scss';
-import { getRandomQuestion } from '../utils';
+import { getRandomQuestion } from '../../utils';
 import { useState } from 'react';
 
 const QuestionBox = () => {

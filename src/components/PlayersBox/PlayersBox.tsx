@@ -1,8 +1,8 @@
 import './PlayersBox.scss';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../store/store';
+import type { RootState } from '../../store/store';
 import PlayerCard from '../PlayerCard/PlayerCard';
-import { openModal } from '../store/slices/modalSlice';
+import { openModal } from '../../store/slices/modalSlice';
 import { useDispatch } from 'react-redux';
 
 const PlayersBox = () => {

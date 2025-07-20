@@ -1,8 +1,8 @@
 import './PlayerCard.scss'
 import { useState, useEffect } from "react";
 import Cross from '../assets/cross.svg?react';
-import { delay } from '../utils';
-import { removePlayer } from '../store/slices/playersSlice';
+import { delay } from '../../utils';
+import { removePlayer } from '../../store/slices/playersSlice';
 import { useDispatch } from 'react-redux';
 
 export type PlayerCardProps = {

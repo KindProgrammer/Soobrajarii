@@ -2,7 +2,7 @@ import './style.scss';
 import Cross from '../../assets/cross.svg?react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
-import { isOpenedSelector, closeModal } from '../../store/slices/modalSlice';
+import { isOpenedSelector, closeModal } from '../../../store/slices/modalSlice';
 import type { ReactNode } from 'react';
 
 interface ModalProps {

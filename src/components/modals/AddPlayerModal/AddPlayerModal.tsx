@@ -3,10 +3,10 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useSelector, shallowEqual } from 'react-redux';
-import { addPlayer } from '../../store/slices/playersSlice';
-import type { RootState } from '../../store/store';
+import { addPlayer } from '../../../store/slices/playersSlice';
+import type { RootState } from '../../../store/store';
 import ModalLayout from '../ModalLayout/ModalLayout';
-import { closeModal } from '../../store/slices/modalSlice';
+import { closeModal } from '../../../store/slices/modalSlice';
 
 const AddPlayerModal = () => {
     const dispatch = useDispatch();

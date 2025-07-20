@@ -4,7 +4,7 @@ import PlayersBox from '../PlayersBox/PlayersBox'
 import LetterBox from '../LettersBox/LettersBox'
 import QuestionBox from '../QuestionBox/QuestionBox'
 import selectModal from '../modals/selectModal'
-import { typeSelector } from '../store/slices/modalSlice'
+import { typeSelector } from '../../store/slices/modalSlice'
 import { useSelector } from 'react-redux'
 import type { ModalType } from '../modals/selectModal'
 
