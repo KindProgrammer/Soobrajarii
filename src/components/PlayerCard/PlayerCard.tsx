@@ -1,9 +1,10 @@
 import './PlayerCard.scss'
 import { useState } from "react";
 import Cross from '../assets/cross.svg?react';
-import { removePlayer } from '../../store/slices/playersSlice';
-import { useDispatch } from 'react-redux';
+import { removePlayer, incrementCount, decrementCount, selectPlayerById } from '../../store/slices/playersSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
+import { openModal } from '../../store/slices/modalSlice';
 
 export type PlayerCardProps = {
     name: string;
@@ -11,22 +12,26 @@ export type PlayerCardProps = {
   };
 
 const PlayerCard = ({ id, name }: PlayerCardProps) => {
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
     const [isVisible, setIsVisible] = useState(true);
     const dispatch = useDispatch();
+    const player = useSelector(selectPlayerById(id));
+
+    if (player?.count === 10) {
+        dispatch(openModal('congratulationsWinnerModal'))
+    }
 
     const handlePlus = () => {
-        setCount(count + 1);
+        dispatch(incrementCount(id));
     }
 
     const handleMinus = () => {
-        if (count - 1 < 0) return;
-        setCount(count - 1);
+        dispatch(decrementCount(id));
     }
 
     const handleRemove = async () => {
         setIsVisible(false);
-        setTimeout(() => dispatch(removePlayer(name)), 500); 
+        setTimeout(() => dispatch(removePlayer(id)), 500);
     }
 
     return (
@@ -50,7 +55,7 @@ const PlayerCard = ({ id, name }: PlayerCardProps) => {
                         <p className="player-name" title={name}>{name}</p>
                         <div className='count-container'>
                             <button className='count-btn' onClick={handleMinus}>{"\u2212"}</button>
-                            <div className="count">{count}</div>
+                            <div className="count">{player?.count}</div>
                             <button className='count-btn' onClick={handlePlus}>{"\uFF0B"}</button>
                         </div>
                     </motion.div>

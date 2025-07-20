@@ -4,7 +4,7 @@ const CongratulationsWinnerModal = () => {
     return (
         <ModalLayout>
             <div>
-            
+                Мои поздравления!
             </div>
         </ModalLayout>
     );

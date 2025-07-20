@@ -1,21 +1,17 @@
 import './style.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
-import { useSelector, shallowEqual } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addPlayer } from '../../../store/slices/playersSlice';
-import type { RootState } from '../../../store/store';
 import ModalLayout from '../ModalLayout/ModalLayout';
 import { closeModal } from '../../../store/slices/modalSlice';
+import { playersSelector } from '../../../store/slices/playersSlice';
 
 const AddPlayerModal = () => {
     const dispatch = useDispatch();
-    
-    // Оптимизированный селектор
-    const currentPlayers = useSelector(
-      (state: RootState) => state.players.players?.map(p => p?.name.toLowerCase()),
-      shallowEqual
-    );
+    const players = useSelector(playersSelector)
+
+    const currentPlayers = players.map(player => player.name.toLowerCase());
   
     const validationSchema = Yup.object().shape({
       name: Yup.string()
@@ -26,7 +22,7 @@ const AddPlayerModal = () => {
             'unique-name',
             'Игрок с таким именем уже существует',
             (value) => {
-                const name = value.trim();
+                const name = value.trim().toLowerCase();
                 return !currentPlayers?.includes(name);
             }
         )
@@ -37,7 +33,7 @@ const AddPlayerModal = () => {
       validationSchema,
       onSubmit: (values) => {
         const name = values.name.trim();
-        dispatch(addPlayer(name));
+        dispatch(addPlayer({id: name, name: name}));
         dispatch(closeModal());
       }
     });

@@ -1,12 +1,13 @@
 import './PlayersBox.scss';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../store/store';
+// import type { RootState } from '../../store/store';
 import PlayerCard from '../PlayerCard/PlayerCard';
 import { openModal } from '../../store/slices/modalSlice';
 import { useDispatch } from 'react-redux';
+import { playersSelector } from '../../store/slices/playersSlice';
 
 const PlayersBox = () => {
-    const players = useSelector((state: RootState) => state.players)
+    const players = useSelector(playersSelector)
     const dispatch = useDispatch();
     
     const handleClick = () => {
@@ -20,10 +21,10 @@ const PlayersBox = () => {
             </div>
             <div className="players">
                 { 
-                    players.players?.length === 0 ? 
+                    players.length === 0 ? 
                     <p className='empty-player-list'>Нет активных игроков</p> 
                     :
-                    players.players?.map(player => <PlayerCard key={player.name} name={player.name} id={player.name} />)
+                    players?.map(player => <PlayerCard key={player.id} name={player.name} id={player.id} />)
                 }
             </div>
             <div className="btn-container">
