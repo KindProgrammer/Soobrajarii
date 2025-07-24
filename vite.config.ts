@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import svgr from "vite-plugin-svgr";
 import { compression } from 'vite-plugin-compression2';
+import autoprefixer from 'autoprefixer';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -26,6 +27,13 @@ export default defineConfig({
       deleteOriginalAssets: false 
     })
   ],
+  css: {
+    postcss: {
+      plugins: [
+          autoprefixer
+      ],
+    }
+  },
   build: {
     target: 'esnext', // Для современных браузеров
     chunkSizeWarningLimit: 1000, // Лимит предупреждений о размере чанков

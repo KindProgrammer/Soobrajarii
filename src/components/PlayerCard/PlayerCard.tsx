@@ -5,14 +5,14 @@ import { removePlayer, incrementCount, decrementCount, selectPlayerById } from '
 import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { openModal } from '../../store/slices/modalSlice';
+import { memo } from 'react';
 
 export type PlayerCardProps = {
     name: string;
     id: string;
   };
 
-const PlayerCard = ({ id, name }: PlayerCardProps) => {
-    // const [count, setCount] = useState(0);
+const PlayerCard = memo(({ id, name }: PlayerCardProps) => {
     const [isVisible, setIsVisible] = useState(true);
     const dispatch = useDispatch();
     const player = useSelector(selectPlayerById(id));
@@ -63,6 +63,6 @@ const PlayerCard = ({ id, name }: PlayerCardProps) => {
             }
         </AnimatePresence>
     );
-}
+})
 
 export default PlayerCard;

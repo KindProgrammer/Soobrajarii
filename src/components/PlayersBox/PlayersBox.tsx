@@ -5,8 +5,9 @@ import PlayerCard from '../PlayerCard/PlayerCard';
 import { openModal } from '../../store/slices/modalSlice';
 import { useDispatch } from 'react-redux';
 import { playersSelector } from '../../store/slices/playersSlice';
+import { memo } from 'react';
 
-const PlayersBox = () => {
+const PlayersBox = memo(() => {
     const players = useSelector(playersSelector)
     const dispatch = useDispatch();
     
@@ -32,7 +33,7 @@ const PlayersBox = () => {
             </div>
         </div>
     )
-}
+})
 
 export default PlayersBox;
 
