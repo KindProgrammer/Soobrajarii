@@ -9,12 +9,10 @@ interface Player {
 
 interface PlayersState {
   list: Player[];
-  winner: string | null;
 }
 
 const initialState: PlayersState = {
   list: [],
-  winner: null
 };
 
 const playersSlice = createSlice({
@@ -34,11 +32,6 @@ const playersSlice = createSlice({
       const player = state.list.find(p => p.id === action.payload);
       if (player) {
         player.count++;
-
-        if (player.count >= 10) {
-          state.winner = player.name;
-          state.list.forEach(p => p.count = 0);
-        }
       }
     },
     decrementCount: (state, action: PayloadAction<string>) => {
@@ -49,7 +42,6 @@ const playersSlice = createSlice({
         }
       },
     resetGame: (state) => {
-      state.winner = null;
       state.list.forEach(p => p.count = 0);
     }
   }

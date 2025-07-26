@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { openModal } from '../../store/slices/modalSlice';
 import { memo } from 'react';
+import { setWinner } from '../../store/slices/winnerSlice';
 
 export type PlayerCardProps = {
     name: string;
@@ -18,7 +19,8 @@ const PlayerCard = memo(({ id, name }: PlayerCardProps) => {
     const player = useSelector(selectPlayerById(id));
 
     if (player?.count === 10) {
-        dispatch(openModal('congratulationsWinnerModal'))
+        dispatch(setWinner(name))
+        dispatch(openModal({type: 'congratulationsWinnerModal', cross: false}))
     }
 
     const handlePlus = () => {
