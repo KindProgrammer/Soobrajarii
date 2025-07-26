@@ -7,7 +7,7 @@ interface Player {
   count: number;
 }
 
-interface PlayersState {
+export interface PlayersState {
   list: Player[];
 }
 

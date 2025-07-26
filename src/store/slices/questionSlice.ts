@@ -3,11 +3,11 @@ import type { RootState } from '../store';
 import { getRandomQuestion } from '../../utils';
 
 
-interface QuestionType {
+export interface QuestionState {
     question: string
 }
 
-const initialState: QuestionType = {
+const initialState: QuestionState = {
     question: '?'
 }
 

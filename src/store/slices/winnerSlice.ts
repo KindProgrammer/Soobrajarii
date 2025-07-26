@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '../store';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-interface winnerState {
+export interface WinnerState {
     winner: string | null;
   }
 
-const initialState: winnerState = {
+const initialState: WinnerState = {
     winner: null
   }
 

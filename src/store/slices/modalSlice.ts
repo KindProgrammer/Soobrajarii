@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '../store';
 
-interface ModalState {
+export interface ModalState {
   isOpened: boolean;
   type: string | null;
   cross: boolean;

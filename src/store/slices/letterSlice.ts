@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '../store';
 import { getRandomLetter } from '../../utils';
 
-interface LetterState {
+export interface LetterState {
     letter: string
   }
 

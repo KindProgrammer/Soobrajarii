@@ -1,9 +1,35 @@
 import { configureStore } from '@reduxjs/toolkit';
-import playersReducer from './slices/playersSlice';
-import modalReduser from './slices/modalSlice';
-import letterReduser from './slices/letterSlice';
-import questionReduser from './slices/questionSlice';
-import winnerReduser from './slices/winnerSlice';
+import playersReducer, { type PlayersState } from './slices/playersSlice';
+import modalReduser, { type ModalState } from './slices/modalSlice';
+import letterReduser, { type LetterState } from './slices/letterSlice';
+import questionReduser, { type QuestionState } from './slices/questionSlice';
+import winnerReduser, { type WinnerState } from './slices/winnerSlice';
+import { localStorageMiddleware } from './middlewares/localStorageMiddleware';
+
+interface RootState {
+  players: PlayersState;
+  modal: ModalState;
+  letter: LetterState;
+  question: QuestionState;
+  winner: WinnerState;
+}
+
+const loadState = (): RootState | undefined => {
+  try {
+    const serializedState = localStorage.getItem('reduxState');
+    if (!serializedState) return undefined;
+    
+    const parsed = JSON.parse(serializedState) as Partial<RootState>;
+    
+    if (parsed.players && Array.isArray(parsed.players.list)) {
+      return parsed as RootState;
+    }
+    return undefined;
+  } catch (err) {
+    console.warn('Не удалось загрузить состояние из localStorage', err);
+    return undefined;
+  }
+};
 
 export const store = configureStore({
     reducer: {
@@ -13,7 +39,12 @@ export const store = configureStore({
       question: questionReduser,
       winner: winnerReduser,
     },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(localStorageMiddleware),
+    preloadedState: loadState(),
   });
 
-export type RootState = ReturnType<typeof store.getState>;
+export type { RootState };
 export type AppDispatch = typeof store.dispatch;
