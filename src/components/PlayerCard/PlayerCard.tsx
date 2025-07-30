@@ -2,6 +2,7 @@ import './PlayerCard.scss'
 import { useState } from "react";
 import Cross from '../assets/cross.svg?react';
 import { removePlayer, incrementCount, decrementCount, selectPlayerById } from '../../store/slices/playersSlice';
+import { victoryPointsSelector } from '../../store/slices/settingsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { openModal } from '../../store/slices/modalSlice';
@@ -17,8 +18,9 @@ const PlayerCard = memo(({ id, name }: PlayerCardProps) => {
     const [isVisible, setIsVisible] = useState(true);
     const dispatch = useDispatch();
     const player = useSelector(selectPlayerById(id));
+    const victoryPoints = useSelector(victoryPointsSelector);
 
-    if (player?.count === 10) {
+    if (player?.count === victoryPoints) {
         dispatch(setWinner(name))
         dispatch(openModal({type: 'congratulationsWinnerModal', cross: false}))
     }

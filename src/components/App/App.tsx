@@ -3,6 +3,7 @@ import React from 'react'
 import PlayersBox from '../PlayersBox/PlayersBox'
 import LetterBox from '../LettersBox/LettersBox'
 import QuestionBox from '../QuestionBox/QuestionBox'
+import Controls from '../Controls/Controls'
 import selectModal from '../modals/selectModal'
 import { typeSelector } from '../../store/slices/modalSlice'
 import { useSelector } from 'react-redux'
@@ -14,6 +15,7 @@ function App() {
 
   return (
       <>
+        <Controls />
         <div className='cards-container'>
           <LetterBox />
           <QuestionBox />

@@ -4,6 +4,7 @@ import modalReduser, { type ModalState } from './slices/modalSlice';
 import letterReduser, { type LetterState } from './slices/letterSlice';
 import questionReduser, { type QuestionState } from './slices/questionSlice';
 import winnerReduser, { type WinnerState } from './slices/winnerSlice';
+import settingsReduser, { type SettingsState } from './slices/settingsSlice';
 import { localStorageMiddleware } from './middlewares/localStorageMiddleware';
 
 interface RootState {
@@ -12,6 +13,7 @@ interface RootState {
   letter: LetterState;
   question: QuestionState;
   winner: WinnerState;
+  settings: SettingsState;
 }
 
 const loadState = (): RootState | undefined => {
@@ -38,6 +40,7 @@ export const store = configureStore({
       letter: letterReduser,
       question: questionReduser,
       winner: winnerReduser,
+      settings: settingsReduser,
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

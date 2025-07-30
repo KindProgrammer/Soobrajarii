@@ -1,12 +1,14 @@
 import AddPlayerModal from "./AddPlayerModal/AddPlayerModal";
 import CongratulationsWinnerModal from "./CongratulationsWinnerModal/CongratulationsWinnerModal";
+import SettingsModal from "./SettingsModal/SettingsModal";
 import type { ComponentType } from "react";
 
-export type ModalType = 'addPlayerModal' | 'congratulationsWinnerModal';
+export type ModalType = 'addPlayerModal' | 'congratulationsWinnerModal' | 'settingsModal';
 
 const selectModal: Record<ModalType, ComponentType> = {
     addPlayerModal: AddPlayerModal,
     congratulationsWinnerModal: CongratulationsWinnerModal,
+    settingsModal: SettingsModal,
 }
 
 export default selectModal;

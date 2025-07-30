@@ -30,7 +30,6 @@ const CongratulationsWinnerModal = () => {
                     <button className='btn' onClick={handleNewGame}>Новая игра</button>
                 </div>
             </div>
-            {/* <Firework /> */}
         </ModalLayout>
     );
 }

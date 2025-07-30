@@ -1,0 +1,45 @@
+@use '../../styles/variables' as *;
+
+.setting {
+    display: flex;
+    justify-content: space-between;
+
+    & .sett-field {
+        display: flex;
+        height: 2.5rem;
+        box-sizing: border-box;
+        background-color: $color-setting-field-bg;
+        border-radius: 0.5rem;
+
+        & .sett-btn {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            height: 100%;
+            width: 2rem;
+            & .sett-icon {
+                height: 100%;
+                width: 100%;
+                transition: transform 0.3s ease;
+            }
+
+            & .sett-icon:hover {
+                transform: scale(1.2);
+            }
+
+            & .sett-icon:active {
+                transform: scale(1);
+            }
+        }
+
+        & .number {
+            background-color: transparent;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+    }
+}
