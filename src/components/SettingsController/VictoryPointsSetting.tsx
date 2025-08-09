@@ -18,7 +18,7 @@ const VictoryPointsSetting = () => {
 
     return (
         <div className="setting">
-            <div className="sett-label">Победные очки:</div>
+            <div className="sett-label">Победные очки</div>
             <div className="sett-field" id="long-break">
                 <button className="sett-btn sett-btn-left" onClick={handleMinus}>
                     <LeftArrow className='sett-icon'/>

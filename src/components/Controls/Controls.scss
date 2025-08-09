@@ -1,6 +1,10 @@
+@use '../../styles/variables' as *;
+
 .controls {
     display: flex;
     gap: 1rem;
+    width: 100%;
+    justify-content: flex-end;
 
     & .controls-item {
         width: 3rem;
@@ -24,5 +28,9 @@
             height: 60%;
             width: 60%;
         }
+    }
+
+    @media (max-width: $mobile) {
+        justify-content: center;
     }
 }

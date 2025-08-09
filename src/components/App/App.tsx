@@ -1,5 +1,5 @@
 import './App.scss'
-import React from 'react'
+import React, { Suspense } from 'react'
 import PlayersBox from '../PlayersBox/PlayersBox'
 import LetterBox from '../LettersBox/LettersBox'
 import QuestionBox from '../QuestionBox/QuestionBox'
@@ -21,7 +21,11 @@ function App() {
           <QuestionBox />
           <PlayersBox />
         </div>
-        {Modal ? <Modal /> : ''}
+        {Modal && 
+          <Suspense fallback={<div>Загрузка модального окна...</div>}>
+            <Modal />
+          </Suspense>
+        }
       </>
   )
 }
